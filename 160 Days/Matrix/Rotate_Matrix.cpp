@@ -50,7 +50,7 @@ void rotateby90(vector<vector<int>>& mat) {
 
 // *************************** README *******************************
 
-// Intuition
+// Intuition of just above code which take O(1) space
 
 // To rotate a matrix by 90 degrees anti-clockwise in-place (without using extra space), we can break the problem into two steps:
 
