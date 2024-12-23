@@ -10,35 +10,26 @@
 // Each row in the matrix is sorted in ascending order.
 // To find a specific element x, you can perform a binary search on each row individually, as binary search works efficiently on sorted arrays.
 
- 
- bool searchRowMatrix(vector<vector<int>> &mat, int x) {
+bool searchRowMatrix(vector<vector<int>> &mat, int x) {
         int i=0;
         int j = mat[0].size()-1;
         while(i<mat.size())
         {
             int start = 0,end = j;
-            while(start<=end && i<mat.size())
+            while(start<=end)
             {
                 int mid = start +(end - start)/2;
-                if(mat[i][j]>=x)
-                {
-                    if(mat[i][mid] == x)
-                        return true;
-                    if(mat[i][mid] < x)
-                        start = mid+1;
-                    else
-                        end = mid -1;
-                }
+                if(mat[i][mid] == x)
+                     return true;
+                if(mat[i][mid] < x)
+                    start = mid+1;
                 else
-                    i++;
+                     nd = mid -1;
             }
             i++;
         }
         return false;
     }
-
-
-
 // *************************** README ********************************
 
 
