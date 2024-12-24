@@ -21,7 +21,7 @@
             int mid = start + (end-start)/2;
             
             int r = mid / m;
-            int c=  mid % n;
+            int c=  mid % m;
             if(mat[r][c] == x)
             return true;
             if(mat[r][c] > x)
