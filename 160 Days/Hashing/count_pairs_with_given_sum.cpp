@@ -17,3 +17,14 @@ int countPairs(vector<int> &arr, int target) {
     }
     return cnt;
 }
+
+// ********* readme ****************
+1. Kal ka POTD:
+    • Sirf target - arr[i] check karke pair milte hi return kar dete hain.
+
+2. Aaj ka POTD:
+    • Saare pairs count karne hain jo target sum banate hain.
+    • Isliye map mein frequency rakhte hain aur target - current element ki frequency ko cnt mein add karte hain.
+
+3. Logic Change:
+    • Sirf ek additional step: cnt mein frequency add karna
