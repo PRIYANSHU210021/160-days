@@ -1,34 +1,49 @@
 // Longest_Consecutive_Subsequence
-TC: O(nlogn)
+TC: O(n)
 SC: O(n) 
 
 int longestConsecutive(vector<int>& arr) {
-        sort(arr.begin(),arr.end());
-        unordered_map<int,int>mp;
-    
-        for(int x : arr){
-            if(mp.find(x-1) != mp.end()) 
-                mp[x]= mp[x-1]+1;
-            else
-                mp[x] = 1;
+        vector<int>v(1000001,0);
+        int n = arr.size();
+        int mx = INT_MIN;
+        for(int i=0; i<n; i++)
+        {
+            v[arr[i]] = 1;
+            mx = max(mx,arr[i]);
         }
-        int ans = 0;
-        for(auto x : mp){
-            ans = max(ans,x.second);
+        int ans = INT_MIN;
+        int cnt = 0;
+        for(int i=0; i<=mx; i++)
+        {
+            if(v[i])
+            cnt++;
+            else
+            {
+                // ans = max(cnt,ans);
+                cnt = 0;
+            }
+                ans = max(cnt,ans);
         }
         return ans;
     }
 
-Sort the Array:
 
-First, the array arr[] is sorted to bring any consecutive integers together.
-Sorting helps in easily identifying consecutive sequences in the next step.
 
-An unordered map (mp) is used to store the length of the longest consecutive subsequence ending at each element.
-The key is the integer, and the value is the length of the consecutive subsequence ending at that key.
+readme:
 
-For each element x in the sorted array:
-If x-1 exists in the map (mp.find(x-1)), it means x can extend the subsequence ending at x-1. So, update the length of the subsequence at x by adding 1 to the length at x-1.
-If x-1 is not found, it means x starts a new subsequence, so set mp[x] = 1.
+Marking the Presence of Elements:
+We use a vector<int> v(1000001, 0) to mark which elements are present in the array. The index of the vector represents the value of an element in the array, and we mark the value at that index as 1 if the element is present in arr.
+For example, if arr[i] = 5, then we set v[5] = 1, which tells us that 5 exists in the array.
+We also track the maximum element in the array (mx = max(mx, arr[i])) because we only need to check up to the maximum value to find the longest consecutive sequence.
 
-After processing all elements, iterate through the map mp to find the maximum value (the longest subsequence length).
+
+Counting Consecutive Elements:
+We initialize a variable cnt to keep track of the current length of a consecutive sequence.
+We iterate through the vector v (from index 0 to mx), checking if the current index i is present in the array by checking if v[i] == 1.
+If v[i] == 1, it means that i is part of a consecutive sequence, so we increment the cnt.
+If v[i] == 0, it means that i is missing, and the sequence breaks. In this case, we reset cnt to 0, because the current consecutive sequence has ended.
+
+Tracking the Longest Sequence:
+Whenever we encounter a break in the sequence (v[i] == 0), we update the ans variable with the maximum of cnt and ans. This ensures that we always keep track of the longest consecutive sequence.
+The cnt is reset to 0 after every break, as we're counting a new potential sequence.
+After the loop finishes, we return the longest consecutive sequence found, which is stored in ans.
