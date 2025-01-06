@@ -18,7 +18,7 @@ Later, I optimized the solution by solving the same problem without using extra 
 I calculated both the closest pair and the maximum absolute difference simultaneously, eliminating the
 need for the extra vector. That’s it!
 
-
+```c++
 vector<int> sumClosest(vector<int>& arr, int target) {
        sort(arr.begin(),arr.end());
        int n = arr.size();
@@ -54,7 +54,7 @@ vector<int> sumClosest(vector<int>& arr, int target) {
        }
        return {a,b};
     }
-
+```
 
 2nd Approach (TC: O(nlogn) & SC: O(1))
 
@@ -63,7 +63,7 @@ Key Changes in This Approach:
     2. Constant space is used to store:
         • a and b (the best pair found so far).
         • Integers for the closest difference (diff) and maximum absolute difference (abs_diff).
-
+```c++
 vector<int> sumClosest(vector<int>& arr, int target) {
        sort(arr.begin(),arr.end());
        int n = arr.size();
@@ -88,7 +88,7 @@ vector<int> sumClosest(vector<int>& arr, int target) {
        }
        return {a,b};
     }
-
+```
     Intution Update:
 Key Variables:
 1. new_diff:
