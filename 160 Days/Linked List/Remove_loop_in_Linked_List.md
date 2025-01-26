@@ -35,7 +35,7 @@ void removeLoop(Node* head) {
 ```
 *Approach*
 
-- Your code uses slow and fast pointer to detect and remove a loop in a linked list.  
+-Here Iam using slow and fast pointer to detect and remove a loop in a linked list.  
 - `slow` and `fast` pointers are initialized at the head of the list.  
 - `slow` moves one step, and `fast` moves two steps. If they meet, a loop is detected.  
 - After detecting the loop, `slow` is reset to the head of the list.  
