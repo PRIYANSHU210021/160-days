@@ -97,5 +97,3 @@ This function is a **helper function** that:
 1. The function **calculates height** but also **updates the diameter simultaneously**.
 2. The **diameter is the longest path (edges) between any two nodes**.
 3. **Efficient O(N) approach** using postorder traversal.
-
-Let me know if you have any doubts! 🚀
