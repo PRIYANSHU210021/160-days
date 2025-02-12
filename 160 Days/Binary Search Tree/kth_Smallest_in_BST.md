@@ -62,3 +62,107 @@ Agar `k = 3` diya ho, to inorder traversal (`solve`) karega:
 - **Inorder traversal** ka time complexity **O(N)** hota hai.
 - Element access `O(1)` me hota hai.
 - **Overall complexity:** `O(N)`
+
+---
+# *Better* #
+
+
+```c++
+class Solution {
+  public:
+    // Return the Kth smallest element in the given BST
+    int solve(Node* node, int k, int &cnt)
+    {
+        if(!node)
+        return -1;
+        
+        int left = solve(node->left,k,cnt);
+        if(left != -1)
+        return left;
+        cnt++;
+        if(cnt==k)
+        return node->data;
+        
+        return solve(node->right,k,cnt);
+                
+    }
+    int kthSmallest(Node *root, int k) {
+        int cnt = 0;
+        return solve(root,k,cnt);
+    }
+};
+```
+
+#### **1. `solve(Node* node, int k, int &cnt)` (Recursive Function)**
+This function performs **inorder traversal** (Left → Root → Right) and maintains a **counter (`cnt`)** to track the number of nodes visited.
+
+#### **2. Base Condition**
+```cpp
+if (!node)
+    return -1;
+```
+- If the node is `NULL`, return `-1`, meaning the element was not found.
+
+#### **3. Left Subtree Traversal**
+```cpp
+int left = solve(node->left, k, cnt);
+if (left != -1)
+    return left;
+```
+- First, we recursively traverse the **left subtree**.
+- If the `left` subtree finds the `k-th` element (`left != -1`), return it immediately.
+
+#### **4. Process the Current Node**
+```cpp
+cnt++;
+if (cnt == k)
+    return node->data;
+```
+- Increase the **counter `cnt`** because we have visited one more node.
+- If **`cnt == k`**, return the current node's value as the `k-th` smallest element.
+
+#### **5. Right Subtree Traversal**
+```cpp
+return solve(node->right, k, cnt);
+```
+- If the current node is **not** the `k-th` smallest, continue to the **right subtree**.
+
+---
+
+### **`kthSmallest(Node *root, int k)`**
+```cpp
+int cnt = 0;
+return solve(root, k, cnt);
+```
+- Initializes `cnt = 0` to keep track of the count.
+- Calls `solve(root, k, cnt)` to find the `k-th` smallest element.
+
+---
+
+### **Example Walkthrough**
+#### **BST Structure**
+```
+        5
+       / \
+      3   8
+     / \   \
+    2   4   10
+```
+**Find `k = 3` (3rd smallest element)**  
+- **Inorder traversal:** `[2, 3, 4, 5, 8, 10]`
+- `cnt` increases at:  
+  - `2` (`cnt = 1`)
+  - `3` (`cnt = 2`)
+  - `4` (`cnt = 3`) → **Return `4`**
+
+---
+
+### **Time & Space Complexity**
+- **Time Complexity:** `O(H + K)`, where `H` is the height of the BST.
+- **Space Complexity:** `O(H)`, due to recursion stack (better than `O(N)` array storage).
+
+---
+
+### **Why is this better than storing in a vector?**
+- It **doesn't store all elements**, just tracks `cnt`.
+- Saves **extra O(N) space**, making it more memory-efficient.
