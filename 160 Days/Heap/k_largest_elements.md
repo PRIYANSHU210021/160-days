@@ -122,18 +122,5 @@ res = {10, 15, 20}
 ✅ **Space Complexity:** **O(k)** (only storing `k` elements).  
 ✅ **Returns `k` largest elements in descending order**.  
 
----
 
-### **Alternative Approach (Using Sorting)**
-If you sort the array and take the last `k` elements:
-```cpp
-vector<int> kLargest(vector<int>& arr, int k) {
-    sort(arr.begin(), arr.end(), greater<int>());
-    return vector<int>(arr.begin(), arr.begin() + k);
-}
-```
-- **Time Complexity:** **O(n log n)** (due to sorting)
-- **Space Complexity:** **O(1)** (modifies the input array)
-
- **heap-based approach (O(n log k))** is **better for large `n` and small `k`**. 
 
