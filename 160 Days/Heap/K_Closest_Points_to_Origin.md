@@ -100,7 +100,7 @@ class Solution {
 
 ---
 
-### **Example Walkthrough**
+### **Example **
 #### **Input:**
 ```cpp
 points = {{1,3}, {-2,2}, {5,8}, {0,1}}
