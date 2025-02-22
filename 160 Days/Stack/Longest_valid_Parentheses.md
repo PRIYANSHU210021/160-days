@@ -5,27 +5,36 @@
 ```c++
 class Solution {
   public:
-    bool isBalanced(string& s) {
-        // code here
+    int maxLength(string& s) {
         stack<int>stk;
-        int n= s.size();
-        int i=0;
-        while(n--)
-        {
-            if(s[i] == '[' || s[i]=='{' || s[i]=='(')
+        int cnt = 0;
+        int index = -1;
+            for(int i=0; i<s.size(); i++)
             {
-                stk.push(s[i]);
+                if(s[i] =='(')      
+                {
+                    stk.push(i);
+                }
+                else
+                {
+                    if(!stk.empty())
+                    {
+                    stk.pop();
+                        if(!stk.empty())
+                        {
+                            cnt = max(cnt, i-stk.top());
+                        }
+                        else
+                        {
+                            cnt = max(cnt, i-index);   
+                        }
+                }
+                else
+                index = i;
             }
-            else
-            {
-                if(s[i]==']' || s[i]=='}' || s[i]==')')
-                stk.pop();
             }
-            i++;
+            return cnt;
         }
-        if(stk.size()) return false;
-        return true;
-    }
 };
 
 ```
