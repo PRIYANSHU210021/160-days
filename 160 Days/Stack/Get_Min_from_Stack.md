@@ -1,6 +1,42 @@
 # Problem: Get Min from Stack
 
+# Code:
 
+```c++
+class Solution {
+  public:
+    Solution() {
+        // code here
+    }
+    stack<int>stk2;
+    stack<int>stk;
+    // Add an element to the top of Stack
+    void push(int x) {
+        stk.push(x);
+        if(stk2.empty() || stk2.top()>=x )
+        stk2.push(x);
+    }
+    // Remove the top element from the Stack
+    void pop() {
+        if (stk.empty()) return;
+        if (stk.top() == stk2.top()) {
+            stk2.pop();
+        }
+        stk.pop();
+    }
+    // Returns top element of the Stack
+    int peek() {
+        // code here
+        if(stk.empty()) return -1;
+        return stk.top();
+    }
+    // Finds minimum element of Stack
+    int getMin() {
+        if(stk2.empty())  return -1;
+        return stk2.top();
+    }
+};
+```
 This is an implementation of a **Min Stack**, which is a special stack that supports retrieving the **minimum element** in constant time **O(1)**, along with standard stack operations like `push`, `pop`, and `peek`.
 
 ---
