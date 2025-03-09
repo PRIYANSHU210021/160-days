@@ -1,5 +1,5 @@
 # Problem: Palindrome SubStrings
-
+Given a string s, count all palindromic sub-strings present in the string. The length of the palindromic sub-string must be greater than or equal to 2. 
 # Code: 
 
 ```c++
